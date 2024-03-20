@@ -16,7 +16,9 @@ const createUserPayload = { email: "duck@mail.com", name: "Duck" };
 
 // 2. CREATE USER PROFILE
 
-async function createUserWithProfile(data: Prisma.UserCreateInput & { bio: string }) {
+async function createUserWithProfile(
+  data: Prisma.UserCreateInput & { bio: string }
+) {
   const result = await prisma.user.create({
     data: {
       email: data.email,
@@ -25,12 +27,32 @@ async function createUserWithProfile(data: Prisma.UserCreateInput & { bio: strin
         create: {
           bio: data.bio,
         },
-      }
-  }});
+      },
+    },
+  });
 }
 
-const createUserWithProfilePayload = { email: "duck@mail.com", name: "Duck", bio: "I am a duck"};
-console.log(createUserWithProfile(createUserWithProfilePayload));
+const createUserWithProfilePayload = {
+  email: "duck@mail.com",
+  name: "Duck",
+  bio: "I am a duck",
+};
+// console.log(createUserWithProfile(createUserWithProfilePayload));
+
+async function createProfileWithUser() {
+  const result = await prisma.profile.create({
+    data: {
+      bio: "I am a CR!",
+      User: {
+        connect: {
+          email: "dupchuwangmo@prisma.io",
+        },
+      },
+    },
+  });
+}
+
+console.log(createProfileWithUser());
 
 // 3. CREATE POST
 
