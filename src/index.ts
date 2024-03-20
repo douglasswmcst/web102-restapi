@@ -1,6 +1,7 @@
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 import { PrismaClient, Prisma } from "@prisma/client";
+import { createUser } from "./dbService";
 
 const app = new Hono();
 
@@ -28,6 +29,14 @@ app.post("/user/create", async (c) => {
       Profile: true,
     },
   });
+  return c.json({ result: result });
+});
+
+app.post("/v2/user/create", async (c) => {
+  const data = await c.req.json();
+  // console.log(data["email"], data["name"]);
+  const payload = {email: data["email"], name: data["name"]}
+  const result = await createUser(payload)
   return c.json({ result: result });
 });
 
