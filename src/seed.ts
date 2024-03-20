@@ -51,10 +51,24 @@ async function createProfileWithUser() {
     },
   });
 }
-
-console.log(createProfileWithUser());
+// console.log(createProfileWithUser());
 
 // 3. CREATE POST
+
+async function createPostFromUser() {
+  const result = await prisma.post.create({
+    data: {
+      title: "Web Class is boring",
+      content: "I am sleepy, i want to join sonam and the 3 boys and sleep",
+      User: {
+        connect: {
+          email: "dupchuwangmo@prisma.io",
+        },
+      },
+    },
+  });
+}
+console.log(createPostFromUser());
 
 // 4. READ USER PROFILE
 
