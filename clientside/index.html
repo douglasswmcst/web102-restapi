@@ -21,6 +21,7 @@
             window.location.href = "./feeds.html";
             // history.pushState(result, "", "./feeds.html");
           } else if (response.status === 500) {
+            // TODO：Handle error
             alert(result.message);
           }
         } catch (error) {
