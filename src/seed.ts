@@ -68,16 +68,84 @@ async function createPostFromUser() {
     },
   });
 }
-console.log(createPostFromUser());
+// console.log(createPostFromUser());
 
-// 4. READ USER PROFILE
+// 4. READ A USER PROFILE
+
+async function getUserProfile() {
+  const result = await prisma.user.findUnique({
+    where: {
+      email: "dupchuwangmo@prisma.io",
+    },
+    select: {
+      email: true,
+      name: true,
+    },
+  });
+  return result;
+}
+console.log(getUserProfile());
 
 // 5. READ ALL POSTS (FEED)
 
+async function getAllPosts() {
+  const result = await prisma.post.findMany({});
+  return result;
+}
+console.log(getAllPosts());
+
 // 6. READ A SPECIFIC POST
+
+async function getAPost() {
+  const result = await prisma.post.findUnique({
+    where: {
+      id: 1,
+    },
+    select: {
+      title: true,
+      content: true,
+    },
+  });
+  return result;
+}
+console.log(getAPost());
 
 // 7. UPDATE USER PROFILE
 
+async function updateUserProfile() {
+  const updateUser = await prisma.user.update({
+    where: {
+      email: "dupchuwangmo@prisma.io",
+    },
+    data: {
+      name: 'Dupchu the Magnificent',
+    },
+  })
+}
+console.log(updateUserProfile())
+
 // 8. UPDATE A SPECIFIC POST
 
+async function updatePost() {
+  const updateUser = await prisma.post.update({
+    where: {
+      id: 1,
+    },
+    data: {
+      title: 'Dupchu the Sleepy',
+    },
+  })
+}
+console.log(updatePost())
+
 // 9. DELETE A SPECIFIC POST
+
+async function deleteAPost() {
+  const result = await prisma.post.delete({
+    where: {
+      id: 1,
+    },
+  });
+  return result;
+}
+console.log(deleteAPost());
