@@ -1,6 +1,6 @@
 import { PrismaClient, Prisma } from "@prisma/client";
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
 // 1. CREATE USER
 async function createUser(_email, _name) {
@@ -11,19 +11,23 @@ async function createUser(_email, _name) {
     },
   });
 }
-console.log(createUser("douglas@gmail.com", "Douglas"))
+// console.log(createUser("douglas@gmail.com", "Douglas"));
 
 // 2. CREATE USER PROFILE
 
-async function createUserProfile(_email, _name) {
-  await prisma.user.create({
+async function createUserWithProfile(_email, _name, _bio) {
+  const result = await prisma.user.create({
     data: {
       email: _email,
       name: _name,
-    },
-  });
+      Profile: {
+        create: {
+          bio: _bio,
+        },
+      }
+  }});
 }
-console.log(createUserProfile("douglas@gmail.com", "Douglas"))
+console.log(createUserWithProfile("dev@gmail.com", "Dev","I'm a developer"));
 
 // 3. CREATE POST
 
