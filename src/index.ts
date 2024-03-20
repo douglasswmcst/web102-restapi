@@ -1,5 +1,6 @@
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
+import { cors } from "hono/cors";
 import { PrismaClient, Prisma } from "@prisma/client";
 import { createUser } from "./dbService";
 
@@ -12,6 +13,7 @@ app.get("/", (c) => {
 });
 
 // POST CREATE USER
+app.use("/*", cors());
 
 app.post("/user/create", async (c) => {
   const data = await c.req.json();
@@ -35,8 +37,8 @@ app.post("/user/create", async (c) => {
 app.post("/v2/user/create", async (c) => {
   const data = await c.req.json();
   // console.log(data["email"], data["name"]);
-  const payload = {email: data["email"], name: data["name"]}
-  const result = await createUser(payload)
+  const payload = { email: data["email"], name: data["name"] };
+  const result = await createUser(payload);
   return c.json({ result: result });
 });
 
