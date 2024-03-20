@@ -3,22 +3,10 @@
   <head>
     <title>BASIC IG</title>
     <script>
-      // POST CREATE REQUEST
-      //   async function temp(data) {
-      //     const response = await fetch(`https://localhost:3000/v2/user/create`);
-      //     const data = await response.json();
-      //     console.log(data);
-
-      //     document.getElementById("name").innerHTML = data.name;
-      //     document.getElementById("weight").innerHTML = data.weight;
-      //     document.getElementById("image").src = data.sprites.front_default;
-      //     document.getElementById("imageShiny").src = data.sprites.front_shiny;
-      //   }
-
       async function createUser(_email, _name) {
         const data = { email: _email, name: _name };
         try {
-          const response = await fetch("http://localhost:3000/user/create", {
+          const response = await fetch("http://localhost:3000/v2/user/create", {
             mode: "cors",
             method: "POST", // or 'PUT'
             headers: {

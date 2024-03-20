@@ -42,6 +42,7 @@ app.post("/v2/user/create", async (c) => {
   return c.json({ result: result });
 });
 
+//  DEFINE THE PORT OF SERVER
 const port = 3000;
 console.log(`Server is running on port ${port}`);
 
