@@ -1,19 +1,19 @@
 {
   "scripts": {
     "dev": "tsx watch src/index.ts",
-    "seed": "node ./src/seed.js"
+    "seed": "node ./src/seed.js",
+    "ts-seed": "npx esrun ./src/seed.ts"
   },
   "dependencies": {
     "@hono/node-server": "^1.8.2",
     "@prisma/client": "5.11.0",
+    "esrun": "^3.2.26",
     "hono": "^4.1.2",
-    "ts-node": "^10.9.2",
     "typescript": "^5.4.2"
   },
   "devDependencies": {
     "@types/node": "^20.11.17",
     "prisma": "^5.11.0",
     "tsx": "^3.12.2"
-  },
-  "type": "module"
+  }
 }
