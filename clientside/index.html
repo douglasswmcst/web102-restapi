@@ -20,6 +20,8 @@
           if (response.status === 200) {
             window.location.href = "./feeds.html";
             // history.pushState(result, "", "./feeds.html");
+          } else if (response.status === 500) {
+            alert(result.message);
           }
         } catch (error) {
           alert(error);

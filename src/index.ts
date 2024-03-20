@@ -47,13 +47,13 @@ app.post("/v2/user/create", async (c) => {
       console.log(e); // e.g. P2002
       // The .code property can be accessed in a type-safe manner
       if (e.code === "P2002") {
-        throw new HTTPException(500, {
-          message:
-            "There is a unique constraint violation, a new user cannot be created with this email",
-        });
+        // throw new HTTPException(500, {
+        //   message:
+        //     "There is a unique constraint violation, a new user cannot be created with this email",
+        // });
+        return c.json({ message: "There is a unique constraint violation, a new user cannot be created with this email" }, 500);
       }
     }
-    throw e;
   }
 });
 
